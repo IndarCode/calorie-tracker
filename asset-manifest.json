@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/calorie-tracker/static/css/main.945e90d8.css",
+    "main.js": "/calorie-tracker/static/js/main.3570a792.js",
+    "static/js/148.4fe98b46.chunk.js": "/calorie-tracker/static/js/148.4fe98b46.chunk.js",
+    "static/js/906.1cdb84bc.chunk.js": "/calorie-tracker/static/js/906.1cdb84bc.chunk.js",
+    "static/js/955.dd67fff5.chunk.js": "/calorie-tracker/static/js/955.dd67fff5.chunk.js",
+    "static/js/157.bd296b5f.chunk.js": "/calorie-tracker/static/js/157.bd296b5f.chunk.js",
+    "static/js/256.8f82e21b.chunk.js": "/calorie-tracker/static/js/256.8f82e21b.chunk.js",
+    "static/js/787.3bbe8c73.chunk.js": "/calorie-tracker/static/js/787.3bbe8c73.chunk.js",
+    "index.html": "/calorie-tracker/index.html",
+    "main.945e90d8.css.map": "/calorie-tracker/static/css/main.945e90d8.css.map",
+    "main.3570a792.js.map": "/calorie-tracker/static/js/main.3570a792.js.map",
+    "148.4fe98b46.chunk.js.map": "/calorie-tracker/static/js/148.4fe98b46.chunk.js.map",
+    "906.1cdb84bc.chunk.js.map": "/calorie-tracker/static/js/906.1cdb84bc.chunk.js.map",
+    "955.dd67fff5.chunk.js.map": "/calorie-tracker/static/js/955.dd67fff5.chunk.js.map",
+    "157.bd296b5f.chunk.js.map": "/calorie-tracker/static/js/157.bd296b5f.chunk.js.map",
+    "256.8f82e21b.chunk.js.map": "/calorie-tracker/static/js/256.8f82e21b.chunk.js.map",
+    "787.3bbe8c73.chunk.js.map": "/calorie-tracker/static/js/787.3bbe8c73.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.945e90d8.css",
+    "static/js/main.3570a792.js"
+  ]
+}

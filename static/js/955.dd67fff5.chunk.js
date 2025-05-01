@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkbasic_app=self.webpackChunkbasic_app||[]).push([[955],{7955:function(s,e,i){i.r(e);i(2791);var a=i(2578),u=i(184);e.default=function(){return(0,u.jsxs)("div",{className:"block",children:[(0,u.jsx)(a.XJ,{style:{marginBottom:"1vw"},children:"SignUp"}),(0,u.jsx)(a.by,{children:"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet."})]})}}}]);
+//# sourceMappingURL=955.dd67fff5.chunk.js.map
