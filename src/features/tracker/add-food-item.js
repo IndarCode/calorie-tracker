@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { PrimaryButton } from '../../components/styled/styled'
 import styled from '@emotion/styled';
+import { addFoodItem } from '../../db';
 
 const StyledFoodForm = styled.section`
 max-width: 600px;
@@ -56,7 +57,10 @@ function AddFoodItem() {
         } else {
             foodItems = []
         }
-        localStorage.setItem("food-items", JSON.stringify([...foodItems, val]))
+        // localStorage.setItem("food-items", JSON.stringify([...foodItems, val]))
+        addFoodItem({
+           ...val
+          })
         setVal({
             name: '',
             protein: '',

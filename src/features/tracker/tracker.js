@@ -4,6 +4,7 @@ import FoodItems from './food-item';
 import Calendar from 'react-calendar';
 import CloseIcon from '@mui/icons-material/Close';
 import '../../App.css';
+import { addDiet, getDietByDate, updateDiet } from '../../db';
 
 const dummyDiet = {
     total: {
@@ -119,17 +120,17 @@ function Tracker() {
     const [diet, setDiet] = useState({...dummyDiet})
     const [date, onChange] = useState(new Date().toLocaleDateString());
 
-    let monthDiet = localStorage.getItem('diet');
-    if(monthDiet){
-        monthDiet = JSON.parse(monthDiet)
-    } else {
-        monthDiet = {}
+
+    function fetchDiet(date){
+        getDietByDate(date).then(res => {
+            console.log(res, "&&&&&&&&&&&&")
+            setDiet(res && res.length > 0 ? res[0] : {...dummyDiet})
+    })
     }
-    
 
     useEffect(() => {
-      setDiet(monthDiet[date] ? { ...monthDiet[date] } : {...dummyDiet})
-    }, [])
+        fetchDiet(date)
+    }, [date])
     
 
     const {
@@ -143,7 +144,6 @@ function Tracker() {
         const calculatedDiet = {...diet}
         let { protein, carbs, fat, calorie } = calculatedDiet.total
         
-
         if(foodItem?.name) {
             calculatedDiet[item] = [...calculatedDiet[item], foodItem ]
             calculatedDiet.total = { 
@@ -162,35 +162,20 @@ function Tracker() {
             }
         }
         setDiet(calculatedDiet);
-        monthDiet[date] = calculatedDiet
-        localStorage.setItem('diet', JSON.stringify(monthDiet) )
-    }
-
-    function handleDateChange(val){
-        const dateVal = val.toLocaleDateString()
-        // if(dateVal !== date){
-            
-            
-        // }
-
-        console.log(monthDiet[dateVal], ":@@@@@@@@@@")
-            onChange(val.toLocaleDateString());
-            if(monthDiet[dateVal]){
-                setDiet({
-                    ...monthDiet[dateVal]
-                })
-            } else {
-                setDiet({
-                    ...dummyDiet
-                })
-            }
+        // monthDiet[date] = calculatedDiet
+        if(calculatedDiet?.id && calculatedDiet?.date){
+            updateDiet({...calculatedDiet})
+        } else {
+            addDiet({...calculatedDiet, date: date})
+        }
+        
     }
     
 
   return (
     <StyledSection>
         <div className='calendar'>
-        <Calendar onChange={handleDateChange} value={date} />
+        <Calendar onChange={(val) => onChange(val.toLocaleDateString())} value={date} />
         </div>
         <div className='dietHolder'>
                 <h1>Diet: 
@@ -203,7 +188,7 @@ function Tracker() {
                 </h1>
                 <section className='dietContainer'>
                     {Object.keys(diet).map(item => {
-                        if(item === 'total'){
+                        if(["id", "total", "date"].includes(item)){
                             return null
                         }
                     return (
@@ -212,7 +197,7 @@ function Tracker() {
                             <h2 className='sectionTitle'>{item}: <FoodItems handleAddItem={(foodItem) => handleAddDeleteItem(foodItem, item)} /></h2> 
                             <ul className='food-items'>
                             {diet[item]?.map((i, index) => (
-                                    <li>
+                                    <li key={i?.name}>
                                         <h3>{i?.name}</h3>
                                         <div className='nutrition'>
                                             <p>(P:{i?.protein} / C: {i?.carbs} / F:{i?.fat} - {i?.calorie} kcal)</p>
