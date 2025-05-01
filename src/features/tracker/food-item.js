@@ -33,7 +33,7 @@ const MenuProps = {
 function FoodItems({ handleAddItem }) {
     const [selectedItem, setSelectedItem] = useState('')
 
-    const foodItems = JSON.parse(localStorage.getItem('food-items'))
+    const foodItems = JSON.parse(localStorage.getItem('food-items')) ?? []
 
   return (
 
