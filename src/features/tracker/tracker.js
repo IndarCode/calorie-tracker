@@ -4,7 +4,7 @@ import FoodItems from './food-item';
 import Calendar from 'react-calendar';
 import CloseIcon from '@mui/icons-material/Close';
 import '../../App.css';
-import { addDiet, getDietByDate, updateDiet } from '../../db';
+import { addDiet, getDietByDate, getDietTarget, updateDiet } from '../../db';
 
 const dummyDiet = {
     total: {
@@ -81,6 +81,31 @@ const StyledSection = styled.section`
     .calendar {
         flex-basis: 25%;
         min-width: 150px;
+        h2.targetTitle {
+            flex-basis: 100%;
+            font-size: 20px;
+            font-weight: 900;
+            margin: 20px 0 10px;
+        }
+        .targetSection {
+            margin-top: 0px;
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #111;
+            border-radius: 4px;
+            padding: 10px 0 0 10px;
+                
+            h3 {
+                margin-bottom: 13px;
+                font-size: 25px;
+                font-weight: 900;
+                width: 25%;
+            }
+             p {
+                font-weight: 400;
+                font-size: 15px;
+            }
+        }
     }
     .dietSection {
          ul.food-items {
@@ -119,17 +144,26 @@ const StyledSection = styled.section`
 function Tracker() {
     const [diet, setDiet] = useState({...dummyDiet})
     const [date, onChange] = useState(new Date().toLocaleDateString());
+     const [target, setTarget] = useState({
+            calorie: '',
+            protein: '',
+            carbs: '',
+            fat: '',
+        })
 
 
     function fetchDiet(date){
         getDietByDate(date).then(res => {
-            console.log(res, "&&&&&&&&&&&&")
-            setDiet(res && res.length > 0 ? res[0] : {...dummyDiet})
+        setDiet(res && res.length > 0 ? res[0] : {...dummyDiet})
     })
     }
 
     useEffect(() => {
-        fetchDiet(date)
+        fetchDiet(date);
+        getDietTarget().then(res => {
+            console.log(res, "((((((((((")
+            setTarget({...res[0]})
+    });
     }, [date])
     
 
@@ -171,11 +205,30 @@ function Tracker() {
         
     }
     
+    console.log(target, "*************" )
 
   return (
     <StyledSection>
         <div className='calendar'>
         <Calendar onChange={(val) => onChange(val.toLocaleDateString())} value={date} />
+        <h2 className='targetTitle'>Target:</h2>
+            {target?.calorie && (
+                <div className='targetSection'>
+                    
+                    {target?.calorie && (
+                        <h3>{target?.calorie}<p>Calorie</p></h3>
+                    )}
+                    {target?.protein && (
+                        <h3>{target?.protein}<p>Protein</p></h3>
+                    )}
+                    {target?.carbs && (
+                        <h3>{target?.carbs}<p>Carbs</p></h3>
+                    )}
+                    {target?.fat && (
+                        <h3>{target?.fat}<p>Fat</p></h3>
+                    )}
+                </div>
+            )}
         </div>
         <div className='dietHolder'>
                 <h1>Diet: 

@@ -38,6 +38,7 @@ function PublicLayout({children}) {
             <h1>calorieTracker</h1>
             <Link to="/">Home</Link>;
             <Link to="/add-food-item">Add Food Item</Link>;
+            <Link to="/admin">Admin</Link>;
           </StyledHeader>
         <Outlet />
     </div>

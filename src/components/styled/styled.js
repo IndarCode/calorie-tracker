@@ -7,14 +7,15 @@ export const PrimaryButton = styled.button`
     background-color: ${props => props.theme.palette.primary[700]};
     padding: 0.8vw 2vw;
     font-size: 1vw;
-    border-radius: 0px;
+    border-radius: 3px;
     margin: 0 0.5vw;
     min-width: 14vw;
     color: ${props => props.theme.palette.font[700]};
     text-transform: uppercase;
     :hover {
         border: 1px solid #ddd;
-        background-color: #ddd; 
+        background-color: #202020; 
+        color: #fff;
     }
 `
 

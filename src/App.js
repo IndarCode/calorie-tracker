@@ -20,6 +20,7 @@ import LoginLayout from "./layouts/loginLayout";
 import RequireAuth from "./features/app/requireAuth";
 import Tracker from "./features/tracker/tracker";
 import AddFoodItem from "./features/tracker/add-food-item";
+import Admin from "./features/tracker/admin";
 
 // Routes components
 const Home = React.lazy(() => import("./features/home/home"));
@@ -44,9 +45,14 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
               <AddFoodItem />
             </Suspense>
           } />
-           <Route path="/" element={ 
+           <Route path="/admin" element={ 
             <Suspense fallback={<div>Loading...</div>}>
-          <Home />
+              <Admin />
+            </Suspense>
+          } />
+           <Route path="/home" element={ 
+            <Suspense fallback={<div>Loading...</div>}>
+              <Home />
           </Suspense>
           } />
         </Route>

@@ -4,9 +4,10 @@ import { openDB } from 'idb';
 const DB_NAME = 'CalorieTrackerDB';
 const STORE_NAME1 = 'FoodItems';
 const STORE_NAME2 = 'DayDiet';
+const STORE_NAME3 = 'DietTarget';
 
 export const initDB = async () => {
-  return openDB(DB_NAME, 10, {
+  return openDB(DB_NAME, 12, {
     upgrade(db) {
       if (!db.objectStoreNames.contains(STORE_NAME1)) {
         const store = db.createObjectStore(STORE_NAME1, {
@@ -27,9 +28,34 @@ export const initDB = async () => {
             store.createIndex('date_diet', 'date', { unique: false });
           }
       }
+
+      if (!db.objectStoreNames.contains(STORE_NAME3)) {
+        const store = db.createObjectStore(STORE_NAME3, {
+          keyPath: 'id',
+          autoIncrement: true,
+        });
+        
+        // store.createIndex('date', 'date', { unique: false }); // to filter by date
+        // store.createIndex('category', 'category', { unique: false }); // optional
+      }
       
     },
   });
+};
+
+
+
+export const setDietTarget = async (entry) => {
+  const db = await initDB();
+  console.log(entry, "*********")
+  await db.add(STORE_NAME3, entry);
+};
+
+
+export const getDietTarget = async () => {
+  const db = await initDB();
+  const x = await db.getAll(STORE_NAME3);
+  return x;
 };
 
 export const addFoodItem = async (entry) => {
