@@ -18,6 +18,8 @@ import AuthLayout from "./layouts/authLayout";
 import PublicLayout from "./layouts/publicLayout";
 import LoginLayout from "./layouts/loginLayout";
 import RequireAuth from "./features/app/requireAuth";
+import Tracker from "./features/tracker/tracker";
+import AddFoodItem from "./features/tracker/add-food-item";
 
 // Routes components
 const Home = React.lazy(() => import("./features/home/home"));
@@ -32,6 +34,16 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
       <Route>
         <Route element={<PublicLayout />}>
           <Route path="/" element={ 
+            <Suspense fallback={<div>Loading...</div>}>
+          <Tracker />
+          </Suspense>
+          } />
+           <Route path="/add-food-item" element={ 
+            <Suspense fallback={<div>Loading...</div>}>
+          <AddFoodItem />
+          </Suspense>
+          } />
+           <Route path="/" element={ 
             <Suspense fallback={<div>Loading...</div>}>
           <Home />
           </Suspense>
