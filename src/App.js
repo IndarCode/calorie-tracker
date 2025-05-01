@@ -34,10 +34,11 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
       <Route>
         <Route element={<PublicLayout />}>
           <Route path="/" element={ 
-            <Suspense fallback={<div>Loading...</div>}>
-          <Tracker />
-          </Suspense>
-          } />
+              <Suspense fallback={<div>Loading...</div>}>
+                <Tracker />
+              </Suspense>
+            } 
+          />
            <Route path="/add-food-item" element={ 
             <Suspense fallback={<div>Loading...</div>}>
           <AddFoodItem />
@@ -82,7 +83,8 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
                 routes for. */}
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-    )
+    ),
+    { basename: '/calorie-tracker' }
   );
 
 function App() {
