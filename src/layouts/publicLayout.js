@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import React from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 
 
 const StyledHeader = styled.header`
@@ -36,8 +36,8 @@ function PublicLayout({children}) {
     <div>
         <StyledHeader>
             <h1>calorieTracker</h1>
-            <a href="/" >Home</a>
-            <a href="/add-food-item">Add Food Item</a>
+            <Link to="/">Home</Link>;
+            <Link to="/add-food-item">Dashboard</Link>;
           </StyledHeader>
         <Outlet />
     </div>
