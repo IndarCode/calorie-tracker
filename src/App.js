@@ -33,7 +33,7 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
     createRoutesFromElements(
       <Route>
         <Route element={<PublicLayout />}>
-          <Route index path="/" element={ 
+          <Route path="/" element={ 
               <Suspense fallback={<div>Loading...</div>}>
                 <Tracker />
               </Suspense>
@@ -50,6 +50,7 @@ const NotFoundPage = React.lazy(() => import("./routes/notFound"));
           </Suspense>
           } />
         </Route>
+
         <Route element={<LoginLayout />} errorElement={<div>Error..</div>}>
             <Route path="/login" element={
             <RequireAuth>
